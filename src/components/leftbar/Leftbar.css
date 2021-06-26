@@ -1,0 +1,46 @@
+.leftbar {
+  height: 85vh;
+  width: 100vw;
+  display: flex;
+}
+.leftbar-left {
+  width: 18vw;
+  height: 100%;
+  background-color: black;
+  color: white;
+  padding: 30px 30px;
+  z-index: 2;
+}
+.left-bar-text-container {
+  min-height: 15%;
+}
+.leftbar-text {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.leftbar-text:hover {
+  color: #a9ffa7;
+}
+.leftbar-child {
+  margin-left: 30%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.leftbar-right {
+  width: 82vw;
+  padding: 10px 25px;
+}
+.beranda-notif {
+  background-color: #a9ffa7;
+  width: 100%;
+  padding: 20px 20px;
+  display: flex;
+  gap: 10px;
+  border-radius: 5px;
+}
