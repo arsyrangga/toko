@@ -23,7 +23,7 @@ const Beranda = () => {
             </div>
             <div className="beranda-card-right">
               <i className="fas fa-plus"></i>
-              <p>Jumlah Barang Yang Tersedia</p>
+              <p>Stock Barang Yang Tersedia</p>
             </div>
           </div>
         </Link>
