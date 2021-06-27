@@ -1,0 +1,50 @@
+.tambah-barang {
+  padding: 25px 10%;
+  width: 100%;
+  height: 100vh;
+}
+.tambah-barang h1 {
+  margin-bottom: 35px;
+}
+.form-data-barang {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.form-data-barang p {
+  width: 25%;
+  font-size: 1.2rem;
+}
+.form-data-barang input {
+  width: 75%;
+  border: none;
+  outline: none;
+  height: 30px;
+  background-color: #f3f3f3;
+  padding: 0 10px;
+}
+.row-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 25px;
+}
+.row-button button {
+  border: none;
+  outline: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+}
+.reset {
+  background-color: #07ad9e;
+}
+.cancel {
+  background-color: #cb0505;
+}
+.submit {
+  background-color: #1aa361;
+}

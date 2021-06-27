@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Leftbar.css";
+import { Link } from "react-router-dom";
 
 const Leftbar = ({ children }) => {
   const [bar, setBar] = useState({
@@ -11,11 +12,14 @@ const Leftbar = ({ children }) => {
     <div className="leftbar">
       <div className="leftbar-left">
         <div className="left-bar-text-container">
-          <div className="leftbar-text">
-            <i className="fas fa-home"></i>
-            <p>Beranda</p>
-            <i className="fas fa-chevron-right"></i>
-          </div>
+          {" "}
+          <Link to="/beranda">
+            <div className="leftbar-text">
+              <i className="fas fa-home"></i>
+              <p>Beranda</p>
+              <i className="fas fa-chevron-right"></i>
+            </div>
+          </Link>
         </div>
         <div className="left-bar-text-container">
           <div
@@ -34,8 +38,13 @@ const Leftbar = ({ children }) => {
           </div>
           {bar.bar1 && (
             <div className=" leftbar-child">
-              <p>Data Barang</p>
-              <p>Return</p>
+              <Link to="/data-barang">
+                <p>Data Barang</p>
+              </Link>
+
+              <Link to="/return">
+                <p>Return</p>
+              </Link>
             </div>
           )}
         </div>
@@ -57,8 +66,12 @@ const Leftbar = ({ children }) => {
           </div>
           {bar.bar2 && (
             <div className=" leftbar-child">
-              <p>Barang Masuk</p>
-              <p>Barang Keluar</p>
+              <Link to="/barang-masuk">
+                <p>Barang Masuk</p>
+              </Link>
+              <Link to="/barang-keluar">
+                <p>Barang Keluar</p>
+              </Link>
             </div>
           )}
         </div>
@@ -79,7 +92,9 @@ const Leftbar = ({ children }) => {
           </div>
           {bar.bar3 && (
             <div className=" leftbar-child">
-              <p>Stock Barang</p>
+              <Link to="/stock-barang">
+                <p>Stock Barang</p>
+              </Link>
             </div>
           )}
         </div>

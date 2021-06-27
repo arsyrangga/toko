@@ -1,0 +1,141 @@
+.row-data-barang {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgb(192, 192, 192);
+  padding-bottom: 7px;
+}
+.row-data-barang button {
+  height: 35px;
+  color: white;
+  background-color: #1aa361;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 0 25px;
+  cursor: pointer;
+}
+.row-data-barang2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+.data-left {
+  width: 50%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.data-left select {
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+}
+.data-left p {
+  font-size: 1rem;
+}
+.data-right {
+  width: 50%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.data-right p {
+  font-size: 1rem;
+}
+.data-right input {
+  outline: none;
+  height: 25px;
+}
+.table-data-barang-header {
+  display: flex;
+  width: 100%;
+  padding: 12.5px 10px;
+  background-color: #a9ffa7;
+  margin-top: 20px;
+}
+.table-data-barang-header p:nth-child(1) {
+  width: 5%;
+}
+.table-data-barang-header p:nth-child(2) {
+  width: 5%;
+}
+.table-data-barang-header p:nth-child(3) {
+  width: 20%;
+}
+.table-data-barang-header p:nth-child(4) {
+  width: 20%;
+}
+.table-data-barang-header p:nth-child(5) {
+  width: 20%;
+}
+.table-data-barang-header p:nth-child(6) {
+  width: 15%;
+}
+.table-data-barang-header p:nth-child(7) {
+  width: 15%;
+}
+.table-data-barang-isi {
+  display: flex;
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #f1f1f1;
+  align-items: center;
+}
+.table-data-barang-isi p:nth-child(1) {
+  width: 5%;
+}
+.table-data-barang-isi p:nth-child(2) {
+  width: 5%;
+}
+.table-data-barang-isi p:nth-child(3) {
+  width: 20%;
+}
+.table-data-barang-isi p:nth-child(4) {
+  width: 20%;
+}
+.table-data-barang-isi p:nth-child(5) {
+  width: 20%;
+}
+.table-data-barang-isi p:nth-child(6) {
+  width: 15%;
+}
+.table-data-barang-isi p:nth-child(7) {
+  width: 15%;
+  display: flex;
+  gap: 10px;
+}
+.table-data-barang-isi p:nth-child(7) i {
+  color: white;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+.edit-data {
+}
+.edit-datas {
+  padding: 10px;
+  background-color: #1aa361;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+.edit-datas:nth-child(2) {
+  padding: 10px;
+  background-color: #d21212;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}

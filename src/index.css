@@ -5,6 +5,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
+  user-select: none;
   padding: 0;
   overflow-x: hidden;
   width: 100vw;
@@ -34,6 +35,10 @@ p {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button {
+  cursor: pointer;
 }
 
 button:active {

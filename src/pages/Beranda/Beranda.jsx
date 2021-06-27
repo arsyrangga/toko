@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Leftbar from "../../components/leftbar/Leftbar";
 import Navbar from "../../components/navbar/Navbar";
@@ -15,15 +16,18 @@ const Beranda = () => {
             <p>Di Sistem Informasi Persediaan Barang Toko Barokah Sport</p>
           </div>
         </div>
-        <div className="beranda-card">
-          <div className="beranda-card-left">
-            <i className="fas fa-file"></i>
+        <Link to="/stock-barang">
+          <div className="beranda-card">
+            <div className="beranda-card-left">
+              <i className="fas fa-file"></i>
+            </div>
+            <div className="beranda-card-right">
+              <i className="fas fa-plus"></i>
+              <p>Jumlah Barang Yang Tersedia</p>
+            </div>
           </div>
-          <div className="beranda-card-right">
-            <i className="fas fa-plus"></i>
-            <p>Jumlah Barang Yang Tersedia</p>
-          </div>
-        </div>
+        </Link>
+
         <Footer margin />
       </Leftbar>
     </div>

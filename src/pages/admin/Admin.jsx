@@ -26,8 +26,9 @@ const Admin = () => {
             <input type="checkbox" />
             <p>Remember Me</p>
           </div>
-
-          <button>Login</button>
+          <Link to="/beranda">
+            <button>Login</button>
+          </Link>
         </div>
       </div>
       <Link to="/">

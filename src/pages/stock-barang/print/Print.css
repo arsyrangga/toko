@@ -1,0 +1,13 @@
+.print {
+  padding: 5% 10%;
+}
+.print h1 {
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.tanggal {
+  text-align: right;
+  margin-top: 20px;
+}

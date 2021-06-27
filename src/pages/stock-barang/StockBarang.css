@@ -1,0 +1,70 @@
+.table-stock-barang-header {
+  display: flex;
+  width: 100%;
+  padding: 12.5px 10px;
+  background-color: #a9ffa7;
+  margin-top: 20px;
+}
+.table-stock-barang-header p:nth-child(1) {
+  width: 5%;
+}
+.table-stock-barang-header p:nth-child(2) {
+  width: 10%;
+}
+.table-stock-barang-header p:nth-child(3) {
+  width: 30%;
+}
+.table-stock-barang-header p:nth-child(4) {
+  width: 20%;
+}
+.table-stock-barang-header p:nth-child(5) {
+  width: 20%;
+}
+.table-stock-barang-header p:nth-child(6) {
+  width: 15%;
+}
+
+.table-stock-barang-isi {
+  display: flex;
+  width: 100%;
+  padding: 15px 10px;
+  background-color: #f1f1f1;
+  align-items: center;
+}
+.table-stock-barang-isi p:nth-child(1) {
+  width: 5%;
+}
+.table-stock-barang-isi p:nth-child(2) {
+  width: 10%;
+}
+.table-stock-barang-isi p:nth-child(3) {
+  width: 30%;
+}
+.table-stock-barang-isi p:nth-child(4) {
+  width: 20%;
+}
+.table-stock-barang-isi p:nth-child(5) {
+  width: 20%;
+}
+.table-stock-barang-isi p:nth-child(6) {
+  width: 15%;
+}
+
+.minimum {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 20px;
+}
+.red {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+}
