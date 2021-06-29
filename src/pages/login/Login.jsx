@@ -32,6 +32,9 @@ const Login = () => {
         } else {
           alert("Password atau username salah");
         }
+      })
+      .catch((err) => {
+        alert("Password atau username salah");
       });
   };
   return (

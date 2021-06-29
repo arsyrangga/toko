@@ -1,6 +1,6 @@
 import "./Admin.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Admin = () => {
   const [input, setInput] = useState({
@@ -11,7 +11,9 @@ const Admin = () => {
   const HandleLogin = (e) => {
     e.preventDefault();
     fetch(
-      `https://toko-barokah.herokuapp.com/api/data-login-admin/${input.username}`,
+      `https://toko-barokah.herokuapp.com/api/data-login-admin/${
+        input.username || "admins"
+      }`,
       {
         method: "GET",
         mode: "cors",
@@ -33,6 +35,9 @@ const Admin = () => {
         } else {
           alert("Password atau username salah");
         }
+      })
+      .catch((err) => {
+        alert("Password atau username salah");
       });
   };
   return (
@@ -73,7 +78,9 @@ const Admin = () => {
             <input type="checkbox" />
             <p>Remember Me</p>
           </div>
-          <button onClick={HandleLogin}>Login</button>
+          <button id="button" onClick={HandleLogin}>
+            Login
+          </button>
         </div>
       </div>
       <Link to="/">
