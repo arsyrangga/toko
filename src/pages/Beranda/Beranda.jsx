@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Leftbar from "../../components/leftbar/Leftbar";
@@ -5,6 +6,10 @@ import Navbar from "../../components/navbar/Navbar";
 import "./Beranda.css";
 
 const Beranda = () => {
+  const [user, setUser] = useState();
+  useEffect(() => {
+    setUser(sessionStorage.getItem("user"));
+  }, []);
   return (
     <div className="beranda">
       <Navbar />
@@ -12,7 +17,7 @@ const Beranda = () => {
         <div className="beranda-notif">
           <i className="fas fa-user"></i>
           <div className="notif-text">
-            <h3>Selamat Datang Langit</h3>
+            <h3>Selamat Datang {user}</h3>
             <p>Di Sistem Informasi Persediaan Barang Toko Barokah Sport</p>
           </div>
         </div>

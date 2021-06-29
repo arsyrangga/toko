@@ -1,7 +1,37 @@
 import "./Admin.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Admin = () => {
+  const [input, setInput] = useState({
+    username: "",
+    password: "",
+  });
+
+  const HandleLogin = (e) => {
+    e.preventDefault();
+    fetch(`http://54.144.148.43:8000/api/data-login-admin/${input.username}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((result) => result.json())
+      .then((data) => {
+        if (
+          data.username == input.username &&
+          data.password == input.password
+        ) {
+          alert(`selamat datang ${input.username}`);
+          sessionStorage.setItem("isAdmin", true);
+          sessionStorage.setItem("user", input.username);
+          window.location.href = "/beranda";
+        } else {
+          alert("Password atau username salah");
+        }
+      });
+  };
   return (
     <div className="dashboard">
       <div className="bg-dashboard">
@@ -15,20 +45,32 @@ const Admin = () => {
             type="text"
             className="login-input"
             placeholder="Masukan Username Anda"
+            onChange={(e) => {
+              setInput({
+                ...input,
+                username: e.target.value,
+              });
+              console.log(input);
+            }}
           />
           <p className="text-input">Password</p>
           <input
             type="password"
             className="login-input"
             placeholder="Masukan Password Anda"
+            onChange={(e) => {
+              setInput({
+                ...input,
+                password: e.target.value,
+              });
+              console.log(input);
+            }}
           />
           <div className="checkbox-container">
             <input type="checkbox" />
             <p>Remember Me</p>
           </div>
-          <Link to="/beranda">
-            <button>Login</button>
-          </Link>
+          <button onClick={HandleLogin}>Login</button>
         </div>
       </div>
       <Link to="/">

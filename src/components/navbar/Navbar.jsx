@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [logout, setLogout] = useState(false);
+  const [user, setUser] = useState();
+  useEffect(() => {
+    setUser(sessionStorage.getItem("user"));
+  }, []);
   return (
     <>
       <div className="navbar">
@@ -16,7 +20,9 @@ const Navbar = () => {
             alt=""
             onClick={() => setLogout(!logout)}
           />
-          <p>Langit</p>
+          <p onClick={() => setLogout(!logout)} style={{ cursor: "pointer" }}>
+            {user}
+          </p>
         </div>
       </div>
       {logout && (
