@@ -9,13 +9,16 @@ const Login = () => {
   });
   const HandleLogin = (e) => {
     e.preventDefault();
-    fetch(`http://54.144.148.43:8000/api/data-login/${input.username}`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://toko-barokah.herokuapp.com/api/data-login/${input.username}`,
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((result) => result.json())
       .then((data) => {
         if (
