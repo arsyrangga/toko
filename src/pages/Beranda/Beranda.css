@@ -38,3 +38,12 @@
 .beranda-card-right p {
   text-align: center;
 }
+
+.beranda-notif {
+  background-color: #a9ffa7;
+  width: 100%;
+  padding: 20px 20px;
+  display: flex;
+  gap: 10px;
+  border-radius: 5px;
+}

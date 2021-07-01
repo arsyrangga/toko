@@ -63,7 +63,6 @@ function BarangKeluar() {
             </div>
           </p>
         </div>
-        <Footer margin />
       </Leftbar>
     </div>
   );

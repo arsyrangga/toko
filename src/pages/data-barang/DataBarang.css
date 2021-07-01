@@ -53,6 +53,8 @@
 .data-right input {
   outline: none;
   height: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 .table-data-barang-header {
   display: flex;

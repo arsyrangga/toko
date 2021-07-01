@@ -32,8 +32,6 @@ const Beranda = () => {
             </div>
           </div>
         </Link>
-
-        <Footer margin />
       </Leftbar>
     </div>
   );

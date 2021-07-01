@@ -1,18 +1,18 @@
-import "./TambahBarang.css";
+import "./EditBarang.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const TambahBarang = () => {
+const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
   const [tambahBarang, setTambahBarang] = useState({
-    code: "",
-    nama: "",
-    kategori: "",
-    harga: 0,
-    stock: 0,
+    code: code,
+    nama: nama,
+    kategori: kategori,
+    harga: harga,
+    stock: stock,
   });
   const HandleSubmit = () => {
-    fetch("https://toko-barokah.herokuapp.com/api/data-barang-post", {
-      method: "POST",
+    fetch(`https://toko-barokah.herokuapp.com/api/data-barang-edit/${id}`, {
+      method: "PUT",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -25,11 +25,12 @@ const TambahBarang = () => {
       .catch((err) => alert("masukkan data yang benar"));
   };
   return (
-    <div className="tambah-barang">
+    <div className="edit-barang">
       <h1>Data Barang</h1>
       <div className="form-data-barang">
         <p>ID</p>
         <input
+          value={tambahBarang.code}
           type="text"
           onChange={(e) =>
             setTambahBarang({
@@ -42,6 +43,7 @@ const TambahBarang = () => {
       <div className="form-data-barang">
         <p>Nama Barang</p>
         <input
+          value={tambahBarang.nama}
           type="text"
           onChange={(e) =>
             setTambahBarang({
@@ -54,6 +56,7 @@ const TambahBarang = () => {
       <div className="form-data-barang">
         <p>Kategori</p>
         <input
+          value={tambahBarang.kategori}
           type="text"
           onChange={(e) =>
             setTambahBarang({
@@ -66,6 +69,7 @@ const TambahBarang = () => {
       <div className="form-data-barang">
         <p>Harga</p>
         <input
+          value={tambahBarang.harga}
           type="number"
           onChange={(e) =>
             setTambahBarang({
@@ -79,6 +83,7 @@ const TambahBarang = () => {
         <p>Stock</p>
         <input
           type="number"
+          value={tambahBarang.stock}
           onChange={(e) =>
             setTambahBarang({
               ...tambahBarang,
@@ -89,9 +94,12 @@ const TambahBarang = () => {
       </div>
       <div className="row-button">
         <button className="reset">Reset</button>
-        <Link to="/data-barang">
-          <button className="cancel">Cancel</button>
-        </Link>
+        <button
+          className="cancel"
+          onClick={() => (window.location.href = "/data-barang")}
+        >
+          Cancel
+        </button>
         <button className="submit" onClick={HandleSubmit}>
           Submit
         </button>
@@ -100,4 +108,4 @@ const TambahBarang = () => {
   );
 };
 
-export default TambahBarang;
+export default EditBarang;

@@ -34,7 +34,6 @@ function StockBarang() {
           <div className="red">.</div>
           <p>Stock Barang Minimum</p>
         </div>
-        <Footer margin />
       </Leftbar>
     </div>
   );
