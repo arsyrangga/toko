@@ -2,7 +2,7 @@
   height: 85vh;
   width: 100vw;
   display: flex;
-  margin-top: 15vh;
+  margin-top: 14vh;
 }
 .leftbar-left {
   width: 18vw;
@@ -12,7 +12,7 @@
   color: white;
   z-index: 2;
   position: fixed;
-  top: 15vh;
+  top: 14vh;
   left: 0;
 }
 .left-bar-text-container {

@@ -1,6 +1,6 @@
 .navbar {
   width: 100vw;
-  height: 15vh;
+  height: 14vh;
   background-color: #1aa361;
   padding: 0 5%;
   display: flex;
@@ -43,13 +43,13 @@
   height: 40px;
   background-color: red;
   color: white;
-  border-radius: 7px;
+  border-radius: 7px 0 0 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   right: 0;
-  top: 15vh;
+  top: 14vh;
   cursor: pointer;
 }
 
