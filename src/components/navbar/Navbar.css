@@ -51,6 +51,7 @@
   right: 0;
   top: 14vh;
   cursor: pointer;
+  z-index: 50;
 }
 
 .logout h3 {
