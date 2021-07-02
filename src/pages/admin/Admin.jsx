@@ -11,9 +11,7 @@ const Admin = () => {
   const HandleLogin = (e) => {
     e.preventDefault();
     fetch(
-      `https://toko-barokah.herokuapp.com/api/data-login-admin/${
-        input.username || "admins"
-      }`,
+      `https://toko-barokah.herokuapp.com/api/data-login-admin/${input.username}`,
       {
         method: "GET",
         mode: "cors",
@@ -30,6 +28,7 @@ const Admin = () => {
         ) {
           alert(`selamat datang ${input.username}`);
           sessionStorage.setItem("isAdmin", true);
+          sessionStorage.setItem("isLogin", true);
           sessionStorage.setItem("user", input.username);
           window.location.href = "/beranda";
         } else {

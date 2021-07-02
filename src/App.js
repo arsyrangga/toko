@@ -13,12 +13,21 @@ import Return from "./pages/return/Return";
 import TambahReturn from "./pages/return/tambah-return/TambahReturn";
 import Print from "./pages/stock-barang/print/Print";
 import StockBarang from "./pages/stock-barang/StockBarang";
+import "./App.css";
+import User from "./pages/user/User";
+import TambahPengguna from "./pages/user/tambah-pengguna/TambahPengguna";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
+          <Route path="/tambah-user">
+            <TambahPengguna />
+          </Route>
+          <Route path="/user">
+            <User />
+          </Route>
           <Route path="/print">
             <Print />
           </Route>

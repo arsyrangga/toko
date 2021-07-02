@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Leftbar.css";
 import { Menu } from "antd";
 import { Link, useHistory } from "react-router-dom";
@@ -20,6 +20,14 @@ import {
 const { SubMenu } = Menu;
 
 const Leftbar = ({ children, open }) => {
+  useEffect(() => {
+    if (sessionStorage.getItem("isAdmin")) {
+      setAdmin(true);
+    } else {
+      setAdmin(false);
+    }
+  }, []);
+  const [admin, setAdmin] = useState(false);
   const history = useHistory();
   const [bar, setBar] = useState({
     bar1: false,
@@ -82,6 +90,21 @@ const Leftbar = ({ children, open }) => {
               Stock Barang
             </Menu.Item>
           </SubMenu>
+          {admin && (
+            <SubMenu
+              title="Manajemen Pengguna"
+              key="sub4"
+              icon={<UserOutlined />}
+            >
+              <Menu.Item
+                key="7"
+                icon={<UserOutlined />}
+                onClick={() => history.push("/user")}
+              >
+                Pengguna
+              </Menu.Item>
+            </SubMenu>
+          )}
         </Menu>
       </div>
       <div className="leftbar-right">{children}</div>

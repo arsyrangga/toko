@@ -1,18 +1,19 @@
-import "./TambahBarang.css";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
+import { Select } from "antd";
+const { Option } = Select;
 
-const TambahBarang = () => {
+function TambahPengguna() {
   const history = useHistory();
   const [tambahBarang, setTambahBarang] = useState({
-    code: "",
+    username: "",
+    password: "",
     nama: "",
-    kategori: "",
-    harga: 0,
-    stock: 0,
+    status: "aktif",
   });
   const HandleSubmit = () => {
-    fetch("https://toko-barokah.herokuapp.com/api/data-barang-post", {
+    fetch("https://toko-barokah.herokuapp.com/api/login", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -22,79 +23,60 @@ const TambahBarang = () => {
     })
       .then((result) => {
         if (result.status == 200) {
-          history.push("/data-barang");
+          history.push("/user");
         } else {
           alert("Masukkan data yang benar");
         }
       })
-      .catch((err) => alert("masukkan data yang benar"));
+      .catch((err) => alert("Masukkan data yang benar"));
   };
   return (
     <div className="tambah-barang">
-      <h1>Data Barang</h1>
+      <h1>Tambah User </h1>
       <div className="form-data-barang">
-        <p>ID</p>
+        <p>Username</p>
         <input
           type="text"
           onChange={(e) =>
-            setTambahBarang({
-              ...tambahBarang,
-              code: e.target.value,
-            })
+            setTambahBarang({ ...tambahBarang, username: e.target.value })
           }
         />
       </div>
       <div className="form-data-barang">
-        <p>Nama Barang</p>
+        <p>Nama Lengkap</p>
         <input
           type="text"
           onChange={(e) =>
-            setTambahBarang({
-              ...tambahBarang,
-              nama: e.target.value,
-            })
+            setTambahBarang({ ...tambahBarang, nama: e.target.value })
           }
         />
       </div>
       <div className="form-data-barang">
-        <p>Kategori</p>
+        <p>Password</p>
         <input
-          type="text"
+          type="password"
           onChange={(e) =>
-            setTambahBarang({
-              ...tambahBarang,
-              kategori: e.target.value,
-            })
+            setTambahBarang({ ...tambahBarang, password: e.target.value })
           }
         />
       </div>
       <div className="form-data-barang">
-        <p>Harga</p>
-        <input
-          type="number"
-          onChange={(e) =>
-            setTambahBarang({
-              ...tambahBarang,
-              harga: e.target.value,
-            })
-          }
-        />
+        <p>Status</p>
+        <Select
+          defaultValue="Aktif"
+          style={{ width: "75%" }}
+          onChange={(e) => {
+            setTambahBarang({ ...tambahBarang, status: e });
+          }}
+        >
+          <Option value="Aktif">Aktif</Option>
+          <Option value="Tidak Aktif">Tidak Aktif</Option>
+        </Select>
       </div>
-      <div className="form-data-barang">
-        <p>Stock</p>
-        <input
-          type="number"
-          onChange={(e) =>
-            setTambahBarang({
-              ...tambahBarang,
-              stock: e.target.value,
-            })
-          }
-        />
-      </div>
+
       <div className="row-button">
         <button className="reset">Reset</button>
-        <Link to="/data-barang">
+        <Link to="/user">
           <button className="cancel">Cancel</button>
         </Link>
         <button className="submit" onClick={HandleSubmit}>
@@ -103,6 +85,6 @@ const TambahBarang = () => {
       </div>
     </div>
   );
-};
+}
 
-export default TambahBarang;
+export default TambahPengguna;

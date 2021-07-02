@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const history = useHistory();
   const [logout, setLogout] = useState(false);
   const [user, setUser] = useState();
   useEffect(() => {
@@ -26,11 +27,15 @@ const Navbar = () => {
         </div>
       </div>
       {logout && (
-        <Link to="/">
-          <div className="logout">
-            <h3>Logout</h3>
-          </div>
-        </Link>
+        <div
+          className="logout"
+          onClick={() => {
+            sessionStorage.clear();
+            history.push("/");
+          }}
+        >
+          <h3>Logout</h3>
+        </div>
       )}
     </>
   );

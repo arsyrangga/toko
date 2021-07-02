@@ -1,14 +1,11 @@
-import Leftbar from "../../components/leftbar/Leftbar";
-import Navbar from "../../components/navbar/Navbar";
-import "./DataBarang.css";
-import Footer from "../../components/footer/Footer";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import EditBarang from "../../components/edit-barang/EditBarang";
-import "antd/dist/antd.css";
+import Navbar from "../../components/navbar/Navbar";
+import Leftbar from "../../components/leftbar/Leftbar";
 import { Table, Tag, Space } from "antd";
+import { useEffect, useState } from "react";
 
-const DataBarang = () => {
+function User() {
   const onEdit = (key, e) => {
     e.preventDefault();
     const data = barang.filter((item) => item.id == key);
@@ -27,13 +24,13 @@ const DataBarang = () => {
     e.preventDefault();
     const data = barang.filter((item) => item.id == key);
     setEdit(data);
-    fetch(`http://toko-barokah.herokuapp.com/api/data-barang-delete/${key}`, {
+    fetch(`http://toko-barokah.herokuapp.com/api/data-login-delete/${key}`, {
       method: "DELETE",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((result) => (window.location.href = "/data-barang"));
+    }).then((result) => (window.location.href = "/user"));
   };
   const columns = [
     {
@@ -42,30 +39,25 @@ const DataBarang = () => {
       render: (text, record, i) => <Space size="middle">{(i += 1)}</Space>,
     },
     {
-      title: "ID",
-      dataIndex: "code",
-      key: "code",
-    },
-    {
-      title: "Nama Barang",
-      dataIndex: "nama",
-      key: "nama",
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
     },
 
     {
-      title: "Kategori",
-      dataIndex: "kategori",
-      key: "kategori",
+      title: "Password",
+      dataIndex: "password",
+      key: "password",
     },
     {
-      title: "Harga",
-      dataIndex: "harga",
-      key: "harga",
+      title: "Nama lengkap",
+      dataIndex: "nama",
+      key: "nama",
     },
     {
-      title: "Stock",
-      dataIndex: "stock",
-      key: "stock",
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
     },
 
     {
@@ -110,15 +102,14 @@ const DataBarang = () => {
   const [barang, setBarang] = useState([]);
   const [edit, setEdit] = useState({
     id: 0,
-    code: "",
+    username: "",
+    password: "",
     nama: "",
-    kategori: "",
-    harga: 0,
-    stock: 0,
+    status: "",
   });
   const [modalEdit, setModalEdit] = useState(false);
   useEffect(() => {
-    fetch("http://toko-barokah.herokuapp.com/api/data-barang", {
+    fetch("http://toko-barokah.herokuapp.com/api/data-login", {
       method: "GET",
       mode: "cors",
       headers: {
@@ -136,25 +127,14 @@ const DataBarang = () => {
       <Navbar />
       <Leftbar>
         <div className="row-data-barang">
-          <h1>Data Barang</h1>{" "}
-          <Link to="/tambah-barang">
+          <h1>Data Pengguna</h1>{" "}
+          <Link to="/tambah-user">
             <button>
               <i className="fas fa-plus"></i>
-              Tambah Barang
+              Tambah Pengguna
             </button>
           </Link>
         </div>
-
-        {modalEdit && (
-          <EditBarang
-            id={edit.id}
-            code={edit.code}
-            nama={edit.nama}
-            kategori={edit.kategori}
-            harga={edit.harga}
-            stock={edit.stock}
-          />
-        )}
         <Table
           bordered
           columns={columns}
@@ -164,5 +144,6 @@ const DataBarang = () => {
       </Leftbar>
     </div>
   );
-};
-export default DataBarang;
+}
+
+export default User;
