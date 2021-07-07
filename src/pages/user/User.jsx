@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Leftbar from "../../components/leftbar/Leftbar";
 import { Table, Tag, Space } from "antd";
 import { useEffect, useState } from "react";
+import EditLogin from "../../components/edit-login/EditLogin";
 
 function User() {
   const onEdit = (key, e) => {
@@ -11,11 +12,10 @@ function User() {
     const data = barang.filter((item) => item.id == key);
     setEdit({
       id: data[0].id,
-      code: data[0].code,
+      username: data[0].username,
+      password: data[0].password,
       nama: data[0].nama,
-      kategori: data[0].kategori,
-      harga: data[0].harga,
-      stock: data[0].stock,
+      status: data[0].status,
     });
     console.log(edit);
     setModalEdit(!modalEdit);
@@ -135,6 +135,15 @@ function User() {
             </button>
           </Link>
         </div>
+        {modalEdit && (
+          <EditLogin
+            id={edit.id}
+            username={edit.username}
+            password={edit.password}
+            nama={edit.nama}
+            status={edit.status}
+          />
+        )}
         <Table
           bordered
           columns={columns}

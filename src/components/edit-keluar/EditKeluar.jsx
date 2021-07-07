@@ -1,18 +1,19 @@
-import "./EditBarang.css";
-import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Input } from "antd";
 
-const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
-  const history = useHistory();
+function EditKeluar({ id, code, tanggal, nama, kategori, merk, harga, stock }) {
   const [tambahBarang, setTambahBarang] = useState({
     code: code,
+    tanggal: tanggal,
     nama: nama,
     kategori: kategori,
+    merk: merk,
     harga: harga,
     stock: stock,
   });
   const HandleSubmit = () => {
-    fetch(`https://toko-barokah.herokuapp.com/api/data-barang-edit/${id}`, {
+    fetch(`https://toko-barokah.herokuapp.com/api/data-keluar-edit/${id}`, {
       method: "PUT",
       mode: "cors",
       headers: {
@@ -22,7 +23,7 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
     })
       .then((result) => {
         if (result.status == 200) {
-          window.location.reload();
+          window.location.href = "/barang-keluar";
         } else {
           alert("Masukkan data yang benar");
         }
@@ -31,18 +32,31 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
   };
   return (
     <div className="edit-barang">
-      <h1>Data Barang</h1>
+      <h1>Edit Barang Keluar</h1>
       <div className="form-data-barang">
         <p>ID</p>
         <input
           value={tambahBarang.code}
           type="text"
-          onChange={(e) =>
+          onChange={(e) => {
             setTambahBarang({
               ...tambahBarang,
               code: e.target.value,
-            })
-          }
+            });
+          }}
+        />
+      </div>
+      <div className="form-data-barang">
+        <p>Tanggal Masuk</p>
+        <Input
+          value={tambahBarang.tanggal}
+          type="date"
+          onChange={(e) => {
+            setTambahBarang({
+              ...tambahBarang,
+              tanggal: e.target.value,
+            });
+          }}
         />
       </div>
       <div className="form-data-barang">
@@ -50,12 +64,12 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
         <input
           value={tambahBarang.nama}
           type="text"
-          onChange={(e) =>
+          onChange={(e) => {
             setTambahBarang({
               ...tambahBarang,
               nama: e.target.value,
-            })
-          }
+            });
+          }}
         />
       </div>
       <div className="form-data-barang">
@@ -63,12 +77,25 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
         <input
           value={tambahBarang.kategori}
           type="text"
-          onChange={(e) =>
+          onChange={(e) => {
             setTambahBarang({
               ...tambahBarang,
               kategori: e.target.value,
-            })
-          }
+            });
+          }}
+        />
+      </div>
+      <div className="form-data-barang">
+        <p>Merk</p>
+        <input
+          value={tambahBarang.merk}
+          type="text"
+          onChange={(e) => {
+            setTambahBarang({
+              ...tambahBarang,
+              merk: e.target.value,
+            });
+          }}
         />
       </div>
       <div className="form-data-barang">
@@ -76,32 +103,32 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
         <input
           value={tambahBarang.harga}
           type="number"
-          onChange={(e) =>
+          onChange={(e) => {
             setTambahBarang({
               ...tambahBarang,
               harga: e.target.value,
-            })
-          }
+            });
+          }}
         />
       </div>
       <div className="form-data-barang">
-        <p>Stock</p>
+        <p>Jumlah</p>
         <input
-          type="number"
           value={tambahBarang.stock}
-          onChange={(e) =>
+          type="number"
+          onChange={(e) => {
             setTambahBarang({
               ...tambahBarang,
               stock: e.target.value,
-            })
-          }
+            });
+          }}
         />
       </div>
       <div className="row-button">
         <button className="reset">Reset</button>
         <button
           className="cancel"
-          onClick={() => (window.location.href = "/data-barang")}
+          onClick={() => (window.location.href = "/barang-keluar")}
         >
           Cancel
         </button>
@@ -111,6 +138,6 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
       </div>
     </div>
   );
-};
+}
 
-export default EditBarang;
+export default EditKeluar;
