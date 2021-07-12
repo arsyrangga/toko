@@ -8,7 +8,7 @@ import { Input } from "antd";
 function TambahBarangMasuk() {
   const history = useHistory();
   const [tambahBarang, setTambahBarang] = useState({
-    code: "",
+    barang_id: "",
     tanggal: "",
     nama: "",
     kategori: "",
@@ -38,13 +38,13 @@ function TambahBarangMasuk() {
     <div className="tambah-barang">
       <h1>Tambah Barang Masuk</h1>
       <div className="form-data-barang">
-        <p>ID</p>
+        <p>ID Barang</p>
         <input
-          type="text"
+          type="number"
           onChange={(e) => {
             setTambahBarang({
               ...tambahBarang,
-              code: e.target.value,
+              barang_id: e.target.value,
             });
           }}
         />

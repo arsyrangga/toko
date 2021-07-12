@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "antd";
 
-function EditMasuk({ id, code, tanggal, nama, kategori, merk, harga, stock }) {
+function EditMasuk({
+  id,
+  barang_id,
+  tanggal,
+  nama,
+  kategori,
+  merk,
+  harga,
+  stock,
+}) {
   const [tambahBarang, setTambahBarang] = useState({
-    code: code,
+    barang_id: barang_id,
     tanggal: tanggal,
     nama: nama,
     kategori: kategori,
@@ -36,12 +45,12 @@ function EditMasuk({ id, code, tanggal, nama, kategori, merk, harga, stock }) {
       <div className="form-data-barang">
         <p>ID</p>
         <input
-          value={tambahBarang.code}
-          type="text"
+          value={tambahBarang.barang_id}
+          type="number"
           onChange={(e) => {
             setTambahBarang({
               ...tambahBarang,
-              code: e.target.value,
+              barang_id: e.target.value,
             });
           }}
         />

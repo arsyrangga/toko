@@ -4,8 +4,113 @@ import Navbar from "../../components/navbar/Navbar";
 import Leftbar from "../../components/leftbar/Leftbar";
 import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
+import { Table, Tag, Space } from "antd";
+import { useEffect, useState } from "react";
 
 function StockBarang() {
+  const columns = [
+    {
+      title: "No",
+      key: "no",
+      render: (text, record, i) => <Space size="middle">{(i += 1)}</Space>,
+    },
+    {
+      title: "ID Barang",
+      dataIndex: "id",
+      key: "id",
+    },
+
+    {
+      title: "Nama lengkap",
+      dataIndex: "nama",
+      key: "nama",
+    },
+    {
+      title: "Kategori",
+      dataIndex: "kategori",
+      key: "kategori",
+    },
+    {
+      title: "Merk",
+      dataIndex: "merk",
+      key: "merk",
+    },
+    {
+      title: "Stock",
+      key: "stock",
+      render: (text, record, i) => (
+        <Space size="middle">
+          {text.datamasuks.length &&
+          text.datakeluars.length &&
+          text.datareturns.length
+            ? text.datamasuks
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next) +
+              text.datakeluars
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next) +
+              text.datareturns
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next)
+            : text.datamasuks.length && text.datakeluars.length
+            ? text.datamasuks
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next) +
+              text.datakeluars
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next)
+            : text.datakeluars.length && text.datareturns.length
+            ? text.datakeluars
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next) +
+              text.datareturns
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next)
+            : text.datamasuks.length && text.datareturns.length
+            ? text.datamasuks
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next) +
+              text.datareturns
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next)
+            : text.datamasuks.length
+            ? text.datamasuks
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next)
+            : text.datakeluars.length
+            ? text.datakeluars
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next)
+            : text.datareturns.length
+            ? text.datareturns
+                .map((e) => e.stock)
+                .reduce((prev, next) => prev + next)
+            : 0}
+        </Space>
+      ),
+    },
+  ];
+
+  function stock(item) {
+    return item.Amount;
+  }
+
+  const [barang, setBarang] = useState([]);
+  const [datax, setDatax] = useState([]);
+  useEffect(() => {
+    fetch("http://toko-barokah.herokuapp.com/api/data-barang", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((result) => result.json())
+      .then((data) => {
+        setBarang(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="stock-barang">
       <Navbar />
@@ -19,21 +124,12 @@ function StockBarang() {
             </button>
           </Link>
         </div>
-        <div className="table-stock-barang-header">
-          <p>No</p>
-          <p>ID</p>
-          <p>Nama Barang</p>
-          <p>Kategori</p>
-          <p>Merk</p>
-          <p>Stock</p>
-        </div>
-        <Isi no="1" />
-        <Isi no="2" stock />
-        <Isi no="3" />
-        <div className="minimum">
-          <div className="red">.</div>
-          <p>Stock Barang Minimum</p>
-        </div>
+        <Table
+          bordered
+          columns={columns}
+          dataSource={barang}
+          style={{ marginBottom: "10px", marginTop: "25px" }}
+        />
       </Leftbar>
     </div>
   );

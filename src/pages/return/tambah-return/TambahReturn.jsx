@@ -8,7 +8,7 @@ import { Input } from "antd";
 function TambahReturn() {
   const history = useHistory();
   const [tambahBarang, setTambahBarang] = useState({
-    code: "",
+    barang_id: 0,
     tanggal: "",
     nama: "",
     kategori: "",
@@ -38,13 +38,13 @@ function TambahReturn() {
     <div className="tambah-barang">
       <h1>Return Barang </h1>
       <div className="form-data-barang">
-        <p>ID</p>
+        <p>ID_Barang</p>
         <input
-          type="text"
+          type="number"
           onChange={(e) => {
             setTambahBarang({
               ...tambahBarang,
-              code: e.target.value,
+              barang_id: e.target.value,
             });
           }}
         />

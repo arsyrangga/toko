@@ -2,14 +2,14 @@ import "./EditBarang.css";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
+const EditBarang = ({ id, nama, kategori, merk, harga }) => {
   const history = useHistory();
   const [tambahBarang, setTambahBarang] = useState({
-    code: code,
+    id: id,
     nama: nama,
     kategori: kategori,
+    merk: merk,
     harga: harga,
-    stock: stock,
   });
   const HandleSubmit = () => {
     fetch(`https://toko-barokah.herokuapp.com/api/data-barang-edit/${id}`, {
@@ -35,12 +35,12 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
       <div className="form-data-barang">
         <p>ID</p>
         <input
-          value={tambahBarang.code}
-          type="text"
+          value={tambahBarang.id}
+          type="number"
           onChange={(e) =>
             setTambahBarang({
               ...tambahBarang,
-              code: e.target.value,
+              id: e.target.value,
             })
           }
         />
@@ -72,6 +72,19 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
         />
       </div>
       <div className="form-data-barang">
+        <p>Merk</p>
+        <input
+          value={tambahBarang.merk}
+          type="text"
+          onChange={(e) =>
+            setTambahBarang({
+              ...tambahBarang,
+              merk: e.target.value,
+            })
+          }
+        />
+      </div>
+      <div className="form-data-barang">
         <p>Harga</p>
         <input
           value={tambahBarang.harga}
@@ -84,19 +97,7 @@ const EditBarang = ({ id, code, nama, kategori, harga, stock }) => {
           }
         />
       </div>
-      <div className="form-data-barang">
-        <p>Stock</p>
-        <input
-          type="number"
-          value={tambahBarang.stock}
-          onChange={(e) =>
-            setTambahBarang({
-              ...tambahBarang,
-              stock: e.target.value,
-            })
-          }
-        />
-      </div>
+
       <div className="row-button">
         <button className="reset">Reset</button>
         <button

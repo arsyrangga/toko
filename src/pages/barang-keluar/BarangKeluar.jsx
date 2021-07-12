@@ -14,7 +14,7 @@ function BarangKeluar() {
     const data = barang.filter((item) => item.id == key);
     setEdit({
       id: data[0].id,
-      code: data[0].code,
+      barang_id: data[0].barang_id,
       tanggal: data[0].tanggal,
       nama: data[0].nama,
       kategori: data[0].kategori,
@@ -44,8 +44,8 @@ function BarangKeluar() {
       render: (text, record, i) => <Space size="middle">{(i += 1)}</Space>,
     },
     {
-      title: "ID",
-      dataIndex: "code",
+      title: "ID Barang",
+      dataIndex: "barang_id",
       key: "id",
     },
     {
@@ -119,7 +119,7 @@ function BarangKeluar() {
   const [barang, setBarang] = useState([]);
   const [edit, setEdit] = useState({
     id: 0,
-    code: "",
+    barang_id: "",
     tanggal: "",
     nama: "",
     kategori: "",
@@ -158,7 +158,7 @@ function BarangKeluar() {
         {modalEdit && (
           <EditKeluar
             id={edit.id}
-            code={edit.code}
+            barang_id={edit.barang_id}
             tanggal={edit.tanggal}
             nama={edit.nama}
             kategori={edit.kategori}

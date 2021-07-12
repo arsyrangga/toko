@@ -14,11 +14,10 @@ const DataBarang = () => {
     const data = barang.filter((item) => item.id == key);
     setEdit({
       id: data[0].id,
-      code: data[0].code,
       nama: data[0].nama,
       kategori: data[0].kategori,
+      merk: data[0].merk,
       harga: data[0].harga,
-      stock: data[0].stock,
     });
     console.log(edit);
     setModalEdit(!modalEdit);
@@ -38,13 +37,13 @@ const DataBarang = () => {
   const columns = [
     {
       title: "No",
-      key: "id",
+      key: "no",
       render: (text, record, i) => <Space size="middle">{(i += 1)}</Space>,
     },
     {
-      title: "ID",
-      dataIndex: "code",
-      key: "code",
+      title: "ID Barang",
+      dataIndex: "id",
+      key: "id",
     },
     {
       title: "Nama Barang",
@@ -57,15 +56,16 @@ const DataBarang = () => {
       dataIndex: "kategori",
       key: "kategori",
     },
+
+    {
+      title: "Merk",
+      dataIndex: "merk",
+      key: "merk",
+    },
     {
       title: "Harga",
       dataIndex: "harga",
       key: "harga",
-    },
-    {
-      title: "Stock",
-      dataIndex: "stock",
-      key: "stock",
     },
 
     {
@@ -110,11 +110,10 @@ const DataBarang = () => {
   const [barang, setBarang] = useState([]);
   const [edit, setEdit] = useState({
     id: 0,
-    code: "",
     nama: "",
     kategori: "",
+    merk: "",
     harga: 0,
-    stock: 0,
   });
   const [modalEdit, setModalEdit] = useState(false);
   useEffect(() => {
@@ -148,11 +147,10 @@ const DataBarang = () => {
         {modalEdit && (
           <EditBarang
             id={edit.id}
-            code={edit.code}
             nama={edit.nama}
             kategori={edit.kategori}
+            merk={edit.merk}
             harga={edit.harga}
-            stock={edit.stock}
           />
         )}
         <Table

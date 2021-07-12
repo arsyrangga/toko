@@ -8,8 +8,8 @@ const TambahBarang = () => {
     code: "",
     nama: "",
     kategori: "",
+    merk: "",
     harga: 0,
-    stock: 0,
   });
   const HandleSubmit = () => {
     fetch("https://toko-barokah.herokuapp.com/api/data-barang-post", {
@@ -32,18 +32,7 @@ const TambahBarang = () => {
   return (
     <div className="tambah-barang">
       <h1>Data Barang</h1>
-      <div className="form-data-barang">
-        <p>ID</p>
-        <input
-          type="text"
-          onChange={(e) =>
-            setTambahBarang({
-              ...tambahBarang,
-              code: e.target.value,
-            })
-          }
-        />
-      </div>
+
       <div className="form-data-barang">
         <p>Nama Barang</p>
         <input
@@ -69,6 +58,18 @@ const TambahBarang = () => {
         />
       </div>
       <div className="form-data-barang">
+        <p>Merk</p>
+        <input
+          type="text"
+          onChange={(e) =>
+            setTambahBarang({
+              ...tambahBarang,
+              merk: e.target.value,
+            })
+          }
+        />
+      </div>
+      <div className="form-data-barang">
         <p>Harga</p>
         <input
           type="number"
@@ -80,18 +81,7 @@ const TambahBarang = () => {
           }
         />
       </div>
-      <div className="form-data-barang">
-        <p>Stock</p>
-        <input
-          type="number"
-          onChange={(e) =>
-            setTambahBarang({
-              ...tambahBarang,
-              stock: e.target.value,
-            })
-          }
-        />
-      </div>
+
       <div className="row-button">
         <button className="reset">Reset</button>
         <Link to="/data-barang">
