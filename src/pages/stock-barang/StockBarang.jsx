@@ -2,12 +2,13 @@ import "./StockBarang.css";
 import React from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Leftbar from "../../components/leftbar/Leftbar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import { Table, Tag, Space } from "antd";
 import { useEffect, useState } from "react";
 
 function StockBarang() {
+  const history = useHistory();
   const columns = [
     {
       title: "No",
@@ -21,7 +22,7 @@ function StockBarang() {
     },
 
     {
-      title: "Nama lengkap",
+      title: "Nama Barang",
       dataIndex: "nama",
       key: "nama",
     },
@@ -117,12 +118,16 @@ function StockBarang() {
       <Leftbar>
         <div className="row-data-barang">
           <h1>Laporan Stock Barang</h1>{" "}
-          <Link to="/print">
-            <button>
-              <i className="fas fa-print"></i>
-              Print
-            </button>
-          </Link>
+          <button
+            onClick={() => {
+              if (window.confirm("Apakah Anda Mau Print")) {
+                history.push("/print");
+              }
+            }}
+          >
+            <i className="fas fa-print"></i>
+            Print
+          </button>
         </div>
         <Table
           bordered
