@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
 import Admin from "./pages/admin/Admin";
 import BarangKeluar from "./pages/barang-keluar/BarangKeluar";
 import TambahBarangKeluar from "./pages/barang-keluar/tambah-barang-keluar/TambahBarangKeluar";
@@ -16,61 +16,80 @@ import StockBarang from "./pages/stock-barang/StockBarang";
 import "./App.css";
 import User from "./pages/user/User";
 import TambahPengguna from "./pages/user/tambah-pengguna/TambahPengguna";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function App() {
+  const history = useHistory();
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    if (sessionStorage.getItem("isLogin")) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
   return (
     <BrowserRouter>
       <div className="App">
-        <Switch>
-          <Route path="/tambah-user">
-            <TambahPengguna />
-          </Route>
-          <Route path="/user">
-            <User />
-          </Route>
-          <Route path="/print">
-            <Print />
-          </Route>
-          <Route path="/stock-barang">
-            <StockBarang />
-          </Route>
-          <Route path="/tambah-barang-keluar">
-            <TambahBarangKeluar />
-          </Route>
-          <Route path="/barang-keluar">
-            <BarangKeluar />
-          </Route>
-          <Route path="/tambah-barang-masuk">
-            <TambahBarangMasuk />
-          </Route>
-          <Route path="/barang-masuk">
-            <BarangMasuk />
-          </Route>
-          <Route path="/tambah-return">
-            <TambahReturn />
-          </Route>
-          <Route path="/return">
-            <Return />
-          </Route>
-          <Route path="/tambah-barang">
-            <TambahBarang />
-          </Route>
-          <Route path="/data-barang">
-            <DataBarang />
-          </Route>
-          <Route path="/beranda">
-            <Beranda />
-          </Route>
-          <Route path="/admin">
-            <Admin />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/">
-            <Dashboard />
-          </Route>
-        </Switch>
+        {isLogin ? (
+          <Switch>
+            <Route path="/tambah-user">
+              <TambahPengguna />
+            </Route>
+            <Route path="/user">
+              <User />
+            </Route>
+            <Route path="/print">
+              <Print />
+            </Route>
+            <Route path="/stock-barang">
+              <StockBarang />
+            </Route>
+            <Route path="/tambah-barang-keluar">
+              <TambahBarangKeluar />
+            </Route>
+            <Route path="/barang-keluar">
+              <BarangKeluar />
+            </Route>
+            <Route path="/tambah-barang-masuk">
+              <TambahBarangMasuk />
+            </Route>
+            <Route path="/barang-masuk">
+              <BarangMasuk />
+            </Route>
+            <Route path="/tambah-return">
+              <TambahReturn />
+            </Route>
+            <Route path="/return">
+              <Return />
+            </Route>
+            <Route path="/tambah-barang">
+              <TambahBarang />
+            </Route>
+            <Route path="/data-barang">
+              <DataBarang />
+            </Route>
+            <Route path="/beranda">
+              <Beranda />
+            </Route>
+            <Route path="/">
+              <Beranda />
+            </Route>
+          </Switch>
+        ) : (
+          <Switch>
+            <Route path="/admin">
+              <Admin />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/">
+              <Dashboard />
+            </Route>
+          </Switch>
+        )}
       </div>
     </BrowserRouter>
   );

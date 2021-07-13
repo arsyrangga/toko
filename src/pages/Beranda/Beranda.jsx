@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Leftbar from "../../components/leftbar/Leftbar";
 import Navbar from "../../components/navbar/Navbar";
 import "./Beranda.css";
 
 const Beranda = () => {
+  const history = useHistory();
+  const [isLogin, setIsLogin] = useState(false);
+
   const [user, setUser] = useState();
   useEffect(() => {
-    setUser(sessionStorage.getItem("user"));
+    if (sessionStorage.getItem("isLogin")) {
+      setIsLogin(true);
+      setUser(sessionStorage.getItem("user"));
+    } else {
+      history.push("/dashboard");
+    }
   }, []);
   return (
     <div className="beranda">

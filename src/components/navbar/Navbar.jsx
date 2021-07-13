@@ -31,7 +31,7 @@ const Navbar = () => {
           className="logout"
           onClick={() => {
             sessionStorage.clear();
-            history.push("/");
+            window.location.href = "/";
           }}
         >
           <h3>Logout</h3>
