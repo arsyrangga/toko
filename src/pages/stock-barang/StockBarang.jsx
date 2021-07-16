@@ -41,37 +41,11 @@ function StockBarang() {
       key: "stock",
       render: (text, record, i) => (
         <Space size="middle">
-          {text.datamasuks.length &&
-          text.datakeluars.length &&
-          text.datareturns.length
+          {text.datamasuks.length && text.datakeluars.length
             ? text.datamasuks
                 .map((e) => e.stock)
                 .reduce((prev, next) => prev + next) +
               text.datakeluars
-                .map((e) => e.stock)
-                .reduce((prev, next) => prev + next) +
-              text.datareturns
-                .map((e) => e.stock)
-                .reduce((prev, next) => prev + next)
-            : text.datamasuks.length && text.datakeluars.length
-            ? text.datamasuks
-                .map((e) => e.stock)
-                .reduce((prev, next) => prev + next) +
-              text.datakeluars
-                .map((e) => e.stock)
-                .reduce((prev, next) => prev + next)
-            : text.datakeluars.length && text.datareturns.length
-            ? text.datakeluars
-                .map((e) => e.stock)
-                .reduce((prev, next) => prev + next) +
-              text.datareturns
-                .map((e) => e.stock)
-                .reduce((prev, next) => prev + next)
-            : text.datamasuks.length && text.datareturns.length
-            ? text.datamasuks
-                .map((e) => e.stock)
-                .reduce((prev, next) => prev + next) +
-              text.datareturns
                 .map((e) => e.stock)
                 .reduce((prev, next) => prev + next)
             : text.datamasuks.length
@@ -80,10 +54,6 @@ function StockBarang() {
                 .reduce((prev, next) => prev + next)
             : text.datakeluars.length
             ? text.datakeluars
-                .map((e) => e.stock)
-                .reduce((prev, next) => prev + next)
-            : text.datareturns.length
-            ? text.datareturns
                 .map((e) => e.stock)
                 .reduce((prev, next) => prev + next)
             : 0}
