@@ -5,6 +5,16 @@ import { Link } from "react-router-dom";
 
 import React from "react";
 
+const getCurrentDate = (separator = "") => {
+  let d = new Date();
+  let date = d.getDate();
+  let month = d.getMonth() + 1;
+  let year = d.getFullYear();
+  return `${year}${separator}${
+    month < 10 ? `0${month}` : `${month}`
+  }${separator}${date}`;
+};
+
 function Print() {
   const [stock, setStock] = useState(false);
   const [barang, setBarang] = useState([]);
@@ -104,7 +114,14 @@ function Print() {
         </div>
       ))}
 
-      <p className="tanggal">Depok, 15 juni 2021</p>
+      <p className="tanggal">
+        Depok,{" "}
+        {new Date().getDate().toLocaleString().replace(".", "") +
+          "-" +
+          new Date().getMonth().toLocaleString().replace(".", "") +
+          "-" +
+          new Date().getFullYear().toLocaleString().replace(".", "")}
+      </p>
     </div>
   );
 }
