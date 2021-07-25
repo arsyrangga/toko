@@ -2,7 +2,7 @@ import "./TambahReturn.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "antd";
 
 function TambahReturn() {
@@ -16,6 +16,29 @@ function TambahReturn() {
     harga: 0,
     stock: 0,
   });
+  useEffect(() => {
+    fetch(
+      `https://toko-barokah.herokuapp.com/api/data-barang/${tambahBarang.barang_id}`,
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        setTambahBarang({
+          ...tambahBarang,
+          nama: result.nama,
+          kategori: result.kategori,
+          merk: result.merk,
+          harga: result.harga,
+        });
+      })
+      .catch((err) => {});
+  }, [tambahBarang.barang_id]);
   const HandleSubmit = () => {
     fetch("https://toko-barokah.herokuapp.com/api/data-return-post", {
       method: "POST",
@@ -61,54 +84,7 @@ function TambahReturn() {
           }}
         />
       </div>
-      <div className="form-data-barang">
-        <p>Nama Barang</p>
-        <input
-          type="text"
-          onChange={(e) => {
-            setTambahBarang({
-              ...tambahBarang,
-              nama: e.target.value,
-            });
-          }}
-        />
-      </div>
-      <div className="form-data-barang">
-        <p>Kategori</p>
-        <input
-          type="text"
-          onChange={(e) => {
-            setTambahBarang({
-              ...tambahBarang,
-              kategori: e.target.value,
-            });
-          }}
-        />
-      </div>
-      <div className="form-data-barang">
-        <p>Merk</p>
-        <input
-          type="text"
-          onChange={(e) => {
-            setTambahBarang({
-              ...tambahBarang,
-              merk: e.target.value,
-            });
-          }}
-        />
-      </div>
-      <div className="form-data-barang">
-        <p>Harga</p>
-        <input
-          type="number"
-          onChange={(e) => {
-            setTambahBarang({
-              ...tambahBarang,
-              harga: e.target.value,
-            });
-          }}
-        />
-      </div>
+
       <div className="form-data-barang">
         <p>Jumlah</p>
         <input
