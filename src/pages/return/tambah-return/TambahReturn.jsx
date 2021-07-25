@@ -63,6 +63,7 @@ function TambahReturn() {
       <div className="form-data-barang">
         <p>ID_Barang</p>
         <input
+          id="id"
           type="number"
           onChange={(e) => {
             setTambahBarang({
@@ -75,6 +76,7 @@ function TambahReturn() {
       <div className="form-data-barang">
         <p>Tanggal</p>
         <Input
+          id="date"
           type="date"
           onChange={(e) => {
             setTambahBarang({
@@ -88,6 +90,7 @@ function TambahReturn() {
       <div className="form-data-barang">
         <p>Jumlah</p>
         <input
+          id="jumlah"
           type="number"
           onChange={(e) => {
             setTambahBarang({
@@ -98,7 +101,16 @@ function TambahReturn() {
         />
       </div>
       <div className="row-button">
-        <button className="reset">Reset</button>
+        <button
+          className="reset"
+          onClick={() => {
+            document.getElementById("id").value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("jumlah").value = "";
+          }}
+        >
+          Reset
+        </button>
         <Link to="/return">
           <button className="cancel">Cancel</button>
         </Link>

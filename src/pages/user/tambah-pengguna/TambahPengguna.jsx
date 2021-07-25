@@ -74,7 +74,16 @@ function TambahPengguna() {
         </Select>
       </div>
 
-      <div className="row-button">
+      <div
+        className="row-button"
+        onClick={() => {
+          const input = document.getElementsByTagName("input");
+          input[0].value = "";
+          input[1].value = "";
+          input[2].value = "";
+          input[3].value = "";
+        }}
+      >
         <button className="reset">Reset</button>
         <Link to="/user">
           <button className="cancel">Cancel</button>

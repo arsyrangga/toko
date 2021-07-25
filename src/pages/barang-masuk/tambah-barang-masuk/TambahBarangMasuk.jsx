@@ -64,6 +64,7 @@ function TambahBarangMasuk() {
       <div className="form-data-barang">
         <p>ID Barang</p>
         <input
+          id="id"
           type="number"
           onChange={(e) => {
             setTambahBarang({
@@ -76,6 +77,7 @@ function TambahBarangMasuk() {
       <div className="form-data-barang">
         <p>Tanggal Masuk</p>
         <Input
+          id="date"
           type="date"
           onChange={(e) => {
             setTambahBarang({
@@ -89,6 +91,7 @@ function TambahBarangMasuk() {
       <div className="form-data-barang">
         <p>Jumlah</p>
         <input
+          id="jumlah"
           type="number"
           onChange={(e) => {
             setTambahBarang({
@@ -99,7 +102,16 @@ function TambahBarangMasuk() {
         />
       </div>
       <div className="row-button">
-        <button className="reset">Reset</button>
+        <button
+          className="reset"
+          onClick={() => {
+            document.getElementById("id").value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("jumlah").value = "";
+          }}
+        >
+          Reset
+        </button>
         <Link to="/barang-masuk">
           <button className="cancel">Cancel</button>
         </Link>

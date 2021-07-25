@@ -99,7 +99,19 @@ const EditBarang = ({ id, nama, kategori, merk, harga }) => {
       </div>
 
       <div className="row-button">
-        <button className="reset">Reset</button>
+        <button
+          className="reset"
+          onClick={() => {
+            const input = document.getElementsByTagName("input");
+            input[0].value = "";
+            input[1].value = "";
+            input[2].value = "";
+            input[3].value = "";
+            input[4].value = "";
+          }}
+        >
+          Reset
+        </button>
         <button
           className="cancel"
           onClick={() => (window.location.href = "/data-barang")}

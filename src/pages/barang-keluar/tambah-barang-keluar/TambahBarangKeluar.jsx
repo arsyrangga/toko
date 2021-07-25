@@ -98,7 +98,17 @@ function TambahBarangKeluar() {
         />
       </div>
       <div className="row-button">
-        <button className="reset">Reset</button>
+        <button
+          className="reset"
+          onClick={() => {
+            const input = document.getElementsByTagName("input");
+            input[0].value = "";
+            input[1].value = "";
+            input[2].value = "";
+          }}
+        >
+          Reset
+        </button>
         <Link to="/barang-keluar">
           <button className="cancel">Cancel</button>
         </Link>
