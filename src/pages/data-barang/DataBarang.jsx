@@ -11,6 +11,7 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 
 const DataBarang = () => {
+  const isAdmin = sessionStorage.getItem("isAdmin");
   const [change, setChange] = useState({
     searchText: "",
     searchedColumn: "",
@@ -175,34 +176,38 @@ const DataBarang = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <p
-            onClick={(e) => {
-              onEdit(record.id, e);
-            }}
-          >
-            <div className="edit-datas" style={{ cursor: "pointer" }}>
-              <i
-                className="fas fa-pen edit-data"
-                style={{ color: "white" }}
-              ></i>
-            </div>
-          </p>
-          <span
-            className=""
-            onClick={(e) => {
-              onDelete(record.id, e);
-            }}
-          >
-            <div
-              className="edit-datas"
-              style={{ background: "#d21212", cursor: "pointer" }}
-            >
-              <i
-                className="fas fa-trash hapus-data"
-                style={{ color: "white" }}
-              ></i>
-            </div>
-          </span>
+          {isAdmin && (
+            <>
+              <p
+                onClick={(e) => {
+                  onEdit(record.id, e);
+                }}
+              >
+                <div className="edit-datas" style={{ cursor: "pointer" }}>
+                  <i
+                    className="fas fa-pen edit-data"
+                    style={{ color: "white" }}
+                  ></i>
+                </div>
+              </p>
+              <span
+                className=""
+                onClick={(e) => {
+                  onDelete(record.id, e);
+                }}
+              >
+                <div
+                  className="edit-datas"
+                  style={{ background: "#d21212", cursor: "pointer" }}
+                >
+                  <i
+                    className="fas fa-trash hapus-data"
+                    style={{ color: "white" }}
+                  ></i>
+                </div>
+              </span>
+            </>
+          )}
         </Space>
       ),
     },
@@ -238,12 +243,14 @@ const DataBarang = () => {
       <Leftbar>
         <div className="row-data-barang">
           <h1>Data Barang</h1>{" "}
-          <Link to="/tambah-barang">
-            <button>
-              <i className="fas fa-plus"></i>
-              Tambah Barang
-            </button>
-          </Link>
+          {isAdmin && (
+            <Link to="/tambah-barang">
+              <button>
+                <i className="fas fa-plus"></i>
+                Tambah Barang
+              </button>
+            </Link>
+          )}
         </div>
 
         {modalEdit && (
