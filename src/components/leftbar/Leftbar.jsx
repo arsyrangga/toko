@@ -81,29 +81,31 @@ const Leftbar = ({ children, open }) => {
               Barang Keluar
             </Menu.Item>
           </SubMenu>
-          <SubMenu title="Laporan" key="sub3" icon={<ExceptionOutlined />}>
-            <Menu.Item
-              key="6"
-              icon={<CalendarOutlined />}
-              onClick={() => history.push("/stock-barang")}
-            >
-              Stock Barang
-            </Menu.Item>
-          </SubMenu>
           {admin && (
-            <SubMenu
-              title="Manajemen Pengguna"
-              key="sub4"
-              icon={<UserOutlined />}
-            >
-              <Menu.Item
-                key="7"
+            <>
+              <SubMenu title="Laporan" key="sub3" icon={<ExceptionOutlined />}>
+                <Menu.Item
+                  key="6"
+                  icon={<CalendarOutlined />}
+                  onClick={() => history.push("/stock-barang")}
+                >
+                  Stock Barang
+                </Menu.Item>
+              </SubMenu>
+              <SubMenu
+                title="Manajemen Pengguna"
+                key="sub4"
                 icon={<UserOutlined />}
-                onClick={() => history.push("/user")}
               >
-                Pengguna
-              </Menu.Item>
-            </SubMenu>
+                <Menu.Item
+                  key="7"
+                  icon={<UserOutlined />}
+                  onClick={() => history.push("/user")}
+                >
+                  Pengguna
+                </Menu.Item>
+              </SubMenu>
+            </>
           )}
         </Menu>
       </div>
