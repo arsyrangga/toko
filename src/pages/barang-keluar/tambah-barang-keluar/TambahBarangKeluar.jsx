@@ -3,10 +3,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Input } from "antd";
+import { Input, Spin } from "antd";
 
 function TambahBarangKeluar() {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
   const [tambahBarang, setTambahBarang] = useState({
     barang_id: "",
     tanggal: "",
@@ -17,6 +18,7 @@ function TambahBarangKeluar() {
     stock: 0,
   });
   useEffect(() => {
+    setLoading(true);
     fetch(
       `https://toko-barokah.herokuapp.com/api/data-barang/${tambahBarang.barang_id}`,
       {
@@ -29,6 +31,7 @@ function TambahBarangKeluar() {
     )
       .then((res) => res.json())
       .then((result) => {
+        setLoading(false);
         setTambahBarang({
           ...tambahBarang,
           nama: result.nama,
@@ -37,11 +40,15 @@ function TambahBarangKeluar() {
           harga: result.harga,
         });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setLoading(false);
+      });
 
     return () => {};
   }, [tambahBarang.barang_id]);
   const HandleSubmit = () => {
+    setLoading(true);
+
     fetch("https://toko-barokah.herokuapp.com/api/data-keluar-post", {
       method: "POST",
       mode: "cors",
@@ -52,15 +59,27 @@ function TambahBarangKeluar() {
     })
       .then((result) => {
         if (result.status == 200) {
+          setLoading(false);
+
           history.push("/barang-keluar");
         } else {
+          setLoading(false);
+
           alert("Masukkan data yang benar");
         }
       })
-      .catch((err) => alert("Masukkan data yang benar"));
+      .catch((err) => {
+        setLoading(false);
+        alert("Masukkan data yang benar");
+      });
   };
   return (
     <div className="tambah-barang">
+      {loading && (
+        <div className="loading-container">
+          <Spin />
+        </div>
+      )}
       <h1>Tambah Barang Keluar</h1>
       <div className="form-data-barang">
         <p>ID Barang</p>

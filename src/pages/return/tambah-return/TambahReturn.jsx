@@ -3,10 +3,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Input } from "antd";
+import { Input, Spin } from "antd";
 
 function TambahReturn() {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
   const [tambahBarang, setTambahBarang] = useState({
     barang_id: 0,
     tanggal: "",
@@ -17,6 +18,7 @@ function TambahReturn() {
     stock: 0,
   });
   useEffect(() => {
+    setLoading(true);
     fetch(
       `https://toko-barokah.herokuapp.com/api/data-barang/${tambahBarang.barang_id}`,
       {
@@ -29,6 +31,7 @@ function TambahReturn() {
     )
       .then((res) => res.json())
       .then((result) => {
+        setLoading(false);
         setTambahBarang({
           ...tambahBarang,
           nama: result.nama,
@@ -37,9 +40,13 @@ function TambahReturn() {
           harga: result.harga,
         });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setLoading(false);
+      });
   }, [tambahBarang.barang_id]);
   const HandleSubmit = () => {
+    setLoading(true);
+
     fetch("https://toko-barokah.herokuapp.com/api/data-return-post", {
       method: "POST",
       mode: "cors",
@@ -50,17 +57,28 @@ function TambahReturn() {
     })
       .then((result) => {
         if (result.status == 200) {
+          setLoading(false);
+
           history.push("/return");
         } else {
+          setLoading(false);
           alert("Masukkan data yang benar");
         }
       })
-      .catch((err) => alert("Masukkan data yang benar"));
+      .catch((err) => {
+        setLoading(false);
+        alert("Masukkan data yang benar");
+      });
 
     return () => {};
   };
   return (
     <div className="tambah-barang">
+      {loading && (
+        <div className="loading-container">
+          <Spin />
+        </div>
+      )}
       <h1>Return Barang </h1>
       <div className="form-data-barang">
         <p>ID_Barang</p>
