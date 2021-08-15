@@ -28,6 +28,8 @@ const TambahBarang = () => {
         }
       })
       .catch((err) => alert("masukkan data yang benar"));
+
+    return () => {};
   };
   return (
     <div className="tambah-barang">

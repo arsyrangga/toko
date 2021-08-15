@@ -1,14 +1,17 @@
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Spin } from "antd";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const [input, setInput] = useState({
     username: "",
     password: "",
   });
   const HandleLogin = (e) => {
     e.preventDefault();
+    setLoading(true);
     fetch(
       `https://toko-barokah.herokuapp.com/api/data-login/${input.username}`,
       {
@@ -28,17 +31,25 @@ const Login = () => {
           alert(`selamat datang ${input.username}`);
           sessionStorage.setItem("isLogin", true);
           sessionStorage.setItem("user", input.username);
+          setLoading(false);
           window.location.href = "/beranda";
         } else {
           alert("Password atau username salah");
+          setLoading(false);
         }
       })
       .catch((err) => {
         alert("Password atau username salah");
+        setLoading(false);
       });
   };
   return (
     <div className="dashboard">
+      {loading && (
+        <div className="loading-container">
+          <Spin />
+        </div>
+      )}
       <div className="bg-dashboard">
         <h1> Barokah Sport</h1>
       </div>

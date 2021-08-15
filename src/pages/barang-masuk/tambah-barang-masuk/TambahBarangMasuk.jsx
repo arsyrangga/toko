@@ -3,10 +3,11 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { Input } from "antd";
+import { Input, Spin } from "antd";
 
 function TambahBarangMasuk() {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
   const [tambahBarang, setTambahBarang] = useState({
     barang_id: "",
     tanggal: "",
@@ -17,27 +18,30 @@ function TambahBarangMasuk() {
     stock: 0,
   });
   useEffect(() => {
-    fetch(
-      `https://toko-barokah.herokuapp.com/api/data-barang/${tambahBarang.barang_id}`,
-      {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    setLoading(true);
+    fetch(`https://toko-barokah.herokuapp.com/api/data-barang`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((result) => {
         setTambahBarang({
           ...tambahBarang,
-          nama: result.nama,
-          kategori: result.kategori,
-          merk: result.merk,
-          harga: result.harga,
+          nama: result[tambahBarang.barang_id - 1].nama,
+          kategori: result[tambahBarang.barang_id - 1].kategori,
+          merk: result[tambahBarang.barang_id - 1].merk,
+          harga: result[tambahBarang.barang_id - 1].harga,
         });
+        setLoading(false);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setLoading(false);
+      });
+
+    return () => {};
   }, [tambahBarang.barang_id]);
 
   const HandleSubmit = () => {
@@ -60,6 +64,11 @@ function TambahBarangMasuk() {
   };
   return (
     <div className="tambah-barang">
+      {loading && (
+        <div className="loading-container">
+          <Spin />
+        </div>
+      )}
       <h1>Tambah Barang Masuk</h1>
       <div className="form-data-barang">
         <p>ID Barang</p>
@@ -94,6 +103,7 @@ function TambahBarangMasuk() {
           id="jumlah"
           type="number"
           onChange={(e) => {
+            console.log(tambahBarang);
             setTambahBarang({
               ...tambahBarang,
               stock: e.target.value,

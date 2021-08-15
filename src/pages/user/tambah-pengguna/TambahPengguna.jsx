@@ -29,6 +29,8 @@ function TambahPengguna() {
         }
       })
       .catch((err) => alert("Masukkan data yang benar"));
+
+    return () => {};
   };
   return (
     <div className="tambah-barang">

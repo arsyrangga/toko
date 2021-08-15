@@ -38,6 +38,8 @@ function TambahBarangKeluar() {
         });
       })
       .catch((err) => {});
+
+    return () => {};
   }, [tambahBarang.barang_id]);
   const HandleSubmit = () => {
     fetch("https://toko-barokah.herokuapp.com/api/data-keluar-post", {
