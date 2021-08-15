@@ -145,7 +145,7 @@ function StockBarang() {
           {text.datamasuks.length && text.datakeluars.length
             ? text.datamasuks
                 .map((e) => e.stock)
-                .reduce((prev, next) => prev + next) +
+                .reduce((prev, next) => prev + next) -
               text.datakeluars
                 .map((e) => e.stock)
                 .reduce((prev, next) => prev + next)
