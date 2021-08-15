@@ -45,6 +45,7 @@ function TambahBarangMasuk() {
   }, [tambahBarang.barang_id]);
 
   const HandleSubmit = () => {
+    setLoading(true);
     fetch("https://toko-barokah.herokuapp.com/api/data-masuk-post", {
       method: "POST",
       mode: "cors",
@@ -55,8 +56,10 @@ function TambahBarangMasuk() {
     })
       .then((result) => {
         if (result.status == 200) {
+          setLoading(false);
           history.push("/barang-masuk");
         } else {
+          setLoading(false);
           alert("Masukkan data yang benar");
         }
       })
