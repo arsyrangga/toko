@@ -17,7 +17,7 @@ const Footer = ({ margin }) => {
         }}
       >
         {" "}
-        @Siti Fauziah 2021 || All Right Reserved
+        @Rangga Arsy Prawira 2021 || All Right Reserved
       </p>
     </div>
   );
