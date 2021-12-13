@@ -51,7 +51,7 @@ const Login = () => {
         </div>
       )}
       <div className="bg-dashboard">
-        <h1> Barokah Sport</h1>
+        <h1> Toko Ko Hasan</h1>
       </div>
       <div className="login-contener">
         <div className="login">
